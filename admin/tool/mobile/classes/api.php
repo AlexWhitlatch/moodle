@@ -90,6 +90,25 @@ class api {
 
                 require("$path/db/mobile.php");
                 foreach ($addons as $addonname => $addoninfo) {
+
+                    // Add handlers (for site add-ons).
+                    $handlers = !empty($addoninfo['handlers']) ? $addoninfo['handlers'] : array();
+                    $handlers = json_encode($handlers); // JSON formatted, since it is a complex structure that may vary over time.
+
+                    // Now language strings used by the app.
+                    $lang = array();
+                    if (!empty($addoninfo['lang'])) {
+                        $stringmanager = get_string_manager();
+                        $langs = $stringmanager->get_list_of_translations();
+                        foreach ($langs as $langid => $langname) {
+                            foreach ($addoninfo['lang'] as $stringinfo) {
+                                $lang[$langid][$stringinfo[0]] =
+                                    $stringmanager->get_string($stringinfo[0], $stringinfo[1], null, $langid);
+                            }
+                        }
+                    }
+                    $lang = json_encode($lang);
+
                     $plugininfo = array(
                         'component' => $component,
                         'version' => $version,
@@ -97,7 +116,9 @@ class api {
                         'dependencies' => !empty($addoninfo['dependencies']) ? $addoninfo['dependencies'] : array(),
                         'fileurl' => '',
                         'filehash' => '',
-                        'filesize' => 0
+                        'filesize' => 0,
+                        'handlers' => $handlers,
+                        'lang' => $lang,
                     );
 
                     // All the mobile packages must be under the plugin mobile directory.
@@ -337,6 +358,7 @@ class api {
         }
 
         $features = array(
+            'NoDelegate_CoreOffline' => new lang_string('offlineuse', 'tool_mobile'),
             '$mmLoginEmailSignup' => new lang_string('startsignup'),
             "$mainmenu" => array(
                 '$mmSideMenuDelegate_mmCourses' => new lang_string('mycourses'),
@@ -357,6 +379,8 @@ class api {
                 '$mmCoursesDelegate_mmaGrades' => new lang_string('grades', 'grades'),
                 '$mmCoursesDelegate_mmaCourseCompletion' => new lang_string('coursecompletion', 'completion'),
                 '$mmCoursesDelegate_mmaNotes' => new lang_string('notes', 'notes'),
+                'NoDelegate_CoreCourseDownload' => new lang_string('downloadcourse', 'tool_mobile'),
+                'NoDelegate_CoreCoursesDownload' => new lang_string('downloadcourses', 'tool_mobile'),
             ),
             "$user" => array(
                 '$mmUserDelegate_mmaBadges' => new lang_string('badges', 'badges'),

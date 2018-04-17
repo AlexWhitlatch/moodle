@@ -23,5 +23,9 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$string['allow'] = 'Use this service to retrieve members\' information as per privacy settings';
+$string['ltiservice_memberships'] = 'IMS LTI Membership: ';
+$string['ltiservice_memberships_help'] = 'Allow the tool to retrieve member\'s info from the course using the IMS LTI Membership Service. The privacy settings will apply.';
+$string['notallow'] = 'Do not use this service';
 $string['pluginname'] = 'Memberships LTI Service';
 $string['servicename'] = 'Memberships';
