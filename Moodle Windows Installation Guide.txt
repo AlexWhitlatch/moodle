@@ -1,0 +1,53 @@
+Windows installation
+Main page ► Installation ► Windows installation
+Installation
+
+    Installing Moodle
+    Installation quick guide
+    Cron
+    Installing plugins
+    Installation FAQ
+    Upgrading
+    Upgrade overview
+    Automatic updates deployment
+    Git guide
+    Administration via command line
+    Upgrading FAQ
+    Moodle migration
+
+
+Installation Packages
+
+If you are running a small (less than 30 users) Moodle server or just want to test Moodle on your Windows PC, pre-built packages are available for you to use. Here are links to pages containing step-by-step instructions for installing Moodle using install packages:
+
+    Complete install packages for Windows for most Windows versions (usually works in Windows 7, but may not work with Windows 8 and 10)
+    Installation guide for Windows using WAMP and Git How to install Moodle on your Windows PC and update it regularly via Git.
+
+    Installation guide for Windows using XAMPP A more typical webserver installation than a complete install package. Both use XAMPP.
+
+    Installation guide for Windows using EasyPHP
+
+Manual Installation
+
+For medium to large installations (e.g. a college, university or business), it is best practice to install Moodle on your server manually.
+
+    Plan your system capacity. This involves estimating the appropriate hardware to support the number of users in your organisation. See Installing Moodle in the How Many Users section for a method of doing this.
+    Install your database server. You have a choice of 
+
+    MySQL/MariaDB (recommended),
+    PostgreSQL (recommended)
+    Microsoft SQL Server 2005
+    Oracle (not recommended - see https://moodle.org/mod/forum/discuss.php?d=65488).
+
+    Install your web server. You have several choices - the decision as to which one to use will depend on your in-house expertise and your required level of sustainability:
+        Apache 2 is recommended as the most tested and popular for Moodle installations. See these instructions for manually installing Apache 2 on Windows.
+        IIS 7/8 server can also be used. See these instructions for Installing and configuring IIS and PHP on Windows.
+        Other webservers are known to install on Windows, e.g. Lighttpd, so you may wish to experiment with these if available memory is low on your server.
+    Install PHP. Use Microsoft Web Platform Installer when using IIS server.
+    Install Moodle by getting the standard installation for Moodle from http://download.moodle.org/ and read Installing Moodle which has detailed generic information.
+    Setup backups. Once Moodle is setup and configured, you should setup backups of the system in case of failure or loss of data.
+        To perform full site backups you need to backup the moodledata and moodle directories, Apache webserver configuration (httpd.conf) if you're using Apache, PHP configuration (php.ini) and any php extensions which are non-standard, and the mysql database. To do this use the integrated backup program (Start -> All Programs -> Accessories -> System Tools -> Backup) or your own proprietary backup software (e.g. BackupExec). To backup your mysql database see the Backup and restore FAQ.
+        To perform course backups see the Course backup page.
+        You should also perform a state backup of the server or PC. This is especially important if you're using IIS as this will backup the IIS metabase. 
+    Check your server security and performance. It is also good practice to read the Performance and Security documentation. Although much of the content is targeted at Linux/Unix users, there is a growing amount for Windows systems.
+    Set-up your Active Directory authentication. You can use the standard LDAP authentication which prompts users with a username/password, or integrated NTLM authentication which does not require campus users to enter their credentials.
