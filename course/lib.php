@@ -3715,8 +3715,12 @@ function duplicate_module($course, $cm) {
     // right below the original one. otherwise it will stay at the
     // end of the section.
     if ($newcmid) {
+	//Used for appending 'copy' to duplicated item
+        $mystring = null;
+        $mystring->str = ' copy';
         $info = get_fast_modinfo($course);
         $newcm = $info->get_cm($newcmid);
+        $DB->set_field('assign', 'name', $newcm->name = $mystring->str, array('id' => 65));
         $section = $DB->get_record('course_sections', array('id' => $cm->section, 'course' => $cm->course));
         moveto_module($newcm, $section, $cm);
         moveto_module($cm, $section, $newcm);
